@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Welcome, {{ username }}!</h2>
+  <p>This is a simple shopping demo home page (protected). Browse items below:</p>
+
+  <ul>
+    <li class="product">Laptop - Powerful laptop - $999</li>
+    <li class="product">Mobile Phone - Latest smartphone - $699</li>
+    <li class="product">Tablet - Lightweight tablet - $399</li>
+  </ul>
+
+  <p><a href="{{ url_for('logout') }}">Logout</a></p>
+{% endblock %}

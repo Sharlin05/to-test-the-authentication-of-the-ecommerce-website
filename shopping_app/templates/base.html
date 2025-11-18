@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Shopping Demo</title>
+    <style>
+      body { font-family: Arial, sans-serif; padding: 1rem; }
+      .flash { padding: .5rem; margin: .5rem 0; border-radius: 4px; }
+      .flash.success { background: #e0f7e9; }
+      .flash.info { background: #eef6ff; }
+      .flash.danger { background: #ffe6e6; }
+      .container { max-width: 600px; margin: 0 auto; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Shopping Demo</h1>
+      <p>
+        {% if session.get('logged_in') %}
+          <a href="{{ url_for('logout') }}">Logout</a>
+        {% else %}
+          <a href="{{ url_for('login') }}">Login</a>
+        {% endif %}
+      </p>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, msg in messages %}
+            <div class="flash {{ category }}">{{ msg }}</div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      {% block content %}{% endblock %}
+    </div>
+  </body>
+</html>
